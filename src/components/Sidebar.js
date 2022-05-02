@@ -14,19 +14,21 @@ import AddIcon from '@mui/icons-material/Add'
 import SidebarOption from './SidebarOption'
 import './Sidebar.css'
 import { useEffect } from 'react'
-import db from "../firebase"
+import db from '../firebase'
 
 function Sidebar() {
   const [channels, setChannels] = useState([])
 
   useEffect(() => {
     //Run this code when the sidebar component is loaded
-    db.collection("rooms").onSnapshot((snapshot) => (
-        setChannels(snapshot.docs.map((doc) => ({
-            id: doc.id,
-            name: doc.data().name
-        })))
-    ))
+    db.collection('rooms').onSnapshot((snapshot) =>
+      setChannels(
+        snapshot.docs.map((doc) => ({
+          id: doc.id,
+          name: doc.data().name,
+        })),
+      ),
+    )
   }, [])
   return (
     <div className="sidebar">
@@ -51,12 +53,11 @@ function Sidebar() {
       <hr />
       <SidebarOption Icon={ExpandLessMore} title="Channels" />
       <hr />
-      <SidebarOption Icon={AddIcon} title="Add Channels" />
+      <SidebarOption Icon={AddIcon} addChannelOption title="Add Channels" />
       {/* Connec to dB and list all the channels */}
-      {channels.map(channel => (
-          <SidebarOption key={channel.id} title={channel.name} />
+      {channels.map((channel) => (
+        <SidebarOption key={channel.id} id={channel.id} title={channel.name} />
       ))}
-      {/* <SidebarOption ... /> ...  */}
     </div>
   )
 }
