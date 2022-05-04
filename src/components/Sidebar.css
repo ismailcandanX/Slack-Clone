@@ -4,6 +4,11 @@
    flex: 0.3;
    border-top: 1px solid #49274b;
    max-width: 16.25rem;
+   overflow-y: scroll;
+   padding-bottom: 1rem;
+}
+.sidebar::-webkit-scrollbar {
+    display: none;
 }
 .sidebar > hr {
     margin: 0.625rem 0;

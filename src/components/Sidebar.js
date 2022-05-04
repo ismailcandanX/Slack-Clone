@@ -15,9 +15,11 @@ import SidebarOption from './SidebarOption'
 import './Sidebar.css'
 import { useEffect } from 'react'
 import db from '../firebase'
+import { useStateValue } from '../StateProvider'
 
 function Sidebar() {
   const [channels, setChannels] = useState([])
+  const [{ user }] = useStateValue()
 
   useEffect(() => {
     //Run this code when the sidebar component is loaded
@@ -37,7 +39,7 @@ function Sidebar() {
           <h2>Office Work</h2>
           <h3>
             <FiberManualRecordIcon />
-            Ismail Candan
+            {user?.displayName}
           </h3>
         </div>
         <CreateIcon />

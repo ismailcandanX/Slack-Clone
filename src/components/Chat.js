@@ -6,6 +6,7 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined'
 import db from '../firebase'
 import { useEffect, useState } from 'react'
 import Message from './Message'
+import ChatInput from './ChatInput'
 
 function Chat() {
   const { roomId } = useParams()
@@ -45,6 +46,7 @@ function Chat() {
         <div className="chat__messages">
             {roomMessages.map( ({message, timestamp, user, userImage}) => 
                 <Message 
+                key={timestamp}
                 message={message}
                 timestamp={timestamp}
                 user={user}
@@ -52,6 +54,7 @@ function Chat() {
                 />
             )}
         </div>
+        <ChatInput channelName={roomDetails?.name} channelId={roomId} />
     </div>
   )
 }
